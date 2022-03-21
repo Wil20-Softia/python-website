@@ -1,0 +1,183 @@
+- Instalar Python 3.x.x
+- Verificar en la Consola los siguientes comandos:
+- python --version
+- pip --version
+- Estos dos comandos verifican: 1 el interprete de python
+y 2 el gestor de descar de python
+- Instalar el Editor de Codigo: Visual Studio Code
+**********************************************************
+                ******  PRACTICA   ******
+**********************************************************
+- Crear la carpeta del proyecto en escritorio: 
+/python-website
+- Abrir la Consola CMD
+- Instalar el Paquete de Flask para desarrollar un servidor
+web con python: pip install Flask
+
+<< PAGINA OFICIAL DE FLASK: 
+<< https//flask.palletsprojects.com >>
+
+- Crear un archivo de inicio del proyecto: index.py
+- Importar el paquete de Flask: form flask import Flask
+- Incializarlo con el objeto Flask(__name__), es para decirle
+- que este es el archivo principal
+- Guardar el Objeto en una Variable app.
+- Para crear la ESCUCHA DEL SERVIDOR PERMANENTE (Modo de desarrollo):
+[
+    if __name__ == '__main__':
+        app.run(debug==True)
+]
+- ESCUCHA DEL SERVIDOR EN MODO DE PRODUCCIÓN:
+- Solo quitar el parametro "debug=True" al metodo "run()"
+
+---- PARA INICIAR EL SERVIDOR UBICARSE EN LA RUTA DEL PROYECTO 
+POR LA CMD Y TIPEAR: python index.py
+---- Si se queda el servidor sin dar respuesta dar Enter varias veces
+
+- Para crear RUTAS en el servidor.
+- @app.route('route'). La ruta principal es "/" y luego las otras
+son normales como por ejemplo. "/about" "/contact" "/services"
+- Despues de creada la ruta debajo inmediatamente colocar 
+la funcion que mostrata el contenido de la ruta en el cliente
+- Siempre dicha función retornara algo, una cadena o si 
+en el caso de querer retornar html importar el metodo
+"render_template"
+- Utilizar el metodo render_template en el retorno de la funcion
+de la ruta como por ejemplo: "return render_template('home.html')"
+- Los archivos html que se retornaran tendran que estar dentro de
+una carpeta llamada "/templates" ubicada dentro de la ruta raiz del
+proyecto "/"
+
+---- Los archivos css y javascript y demas de html (todos los archvivos
+estaticos por parte del cliente) se guardaran en una carpeta "/static"
+dentro de la raiz del proyecto "/"
+
+---- Para enlazar archivos estaticos a un archivo html como por ejemplo
+un archivo css utilizar la siguiente expresion dentro de la propiedad
+de la dirección {{ url_for('static', filename='css/main.css') }}
+url_for(): es una función de python para enlazar dinamicamente los
+documentos
+
+---- Importar la CDN de boostrap 4 para el archivo html
+
+<< Crear un archivo "layout.html" dentro de la carpeta "/templates"
+<< Tomar todo el html principal y común para todos los archivos 
+<< o paginas html y copiarlo dentro de layout
+
+<< Tomar de la pagina oficial de bootstrap una porcion de codigo de
+<< Navbar con enlaces. Modificarla para que solo queden 2 enlaces
+<< el home y el about. Al "ul" que contiene los enlaces colocarle
+<< la clase "ml-auto" para que se se alineen los enlaces hacia la
+<< derecha de la barra de navegación.
+
+<< Cambiar el nombre principal de la BN a Python Webapp: y colocarle
+<< la direccón del home "/", al igual que en el enlace de "Home". Al 
+<< enlace de "About" colocarle la dirección de la siguiente manera 
+<< {{ url_for('about') }} que es el nombre de la función que ejecuta 
+<< la vista del "About" en el index.py
+
+<< En el archivo "layout.html" colorcarle el siguiente codigo en donde
+<< se introduciran los contenidos de la demas paginas adyacentes:
+<< {% block content %}
+<< {% endblock %}
+
+<< Y a los archivos que heredaran de los estilos basicos de la pagina web
+<< que estan contenidos en "layout.html" colocarle el siguiente codigo:
+<< {% extends "layout.html" %}
+<< {% block content %}
+<<      contenido html de la pagina respectiva
+<< {% endblock %}
+
+
+*******************************************************************
+            ******   ESTILIZANDO EL SITIO WEB  ******
+*******************************************************************
+--- Ir al sitio oficial de Boostrap --> Jumbotron
+- Copiar el codigo del primer Jumbotron
+- Pegar el codigo en el archivo "home.html"
+- En el archivo "layout.html" el <% block content %> colocalor
+- dentro de un .container .p-4
+--- Colocarle un color de fondo a la website:
+- Ir a Uigradients: y buscar un color azul degradado, copiar el css
+- dentro del archivo "main.css" en la etiqueta "body"
+
+<<<<<<< PREPARAR AL PROYECTO CON UN ENTORNO VIRTUAL:
+-  Crear una carpeta en la raiz del proyecto "/" con el nombre de:
+- "/src" y mover todos los archivos y carpetas a dicho directorio
+- Abrir la consola y ubicarse dentro del direcorio del proyecto
+- Buscar en google: python virtual env: nos servira para instalar el
+- entorno virtual.
+- Utilizar el siguiente comando para instalar el virtualenv:
+- python install virtualenv
+- Luego utilizar el comando para instalar la carpeta del entorno vitual 
+- el siguiente comando: python -m venv venv
+- Se creara una carpeta llamada "/venv" en la raiz del proyecto
+- la cual contiene todos los ejecutables que se podran utilizar dentro
+- del proyecto en especifico
+- A traves de la consola dirigirse a "venv/Scripts" para poder ejecutar los
+- comandos con el python y el pip local
+- Instalar los paquetes externos que necesita el proyecto desde el comando
+- "pip" local: "pip install flask"
+- El paquete aparecera en la direccion Lib/site-package
+- Para ejecutar la pagina con el entorno virtual solo ejecutar el comando
+- "python" en el directorio en donde se encuentre el "index.py"
+- python ../../src/index.py
+- El servidor web se ejecutara desde el entorno virtual
+
+<<<<<<< DESPLEGAR EL SITIO WEB EN UN SERVIDOR EN LA NUBE DE FORMA GRATUITA
+--- Ingresar a heroku.com
+- Registrarse y loguearse
+- Descargar la herramienta "Consola de Heroku" para subir el sitio web con
+- la consola. Buscar en google: "heroku cli" y entrar en la primera pagina
+- Descargar el heroku cli dependiendo del SO y la Arquitectura Windows 32bits
+- Probando heroku cli: "heroku --version"
+
+---- Para empezar a utilizar heroku, utilizar el comando: "heroku login"
+--- luego dar enter y se abrira una pagina en el navegar, y si estas logueado
+--- Dar clic en login y esperar el logueo, luego cierra la pagina y dirigete a
+--- la consola, ya estas logueado.
+--- Cierro todas las consolas.
+--- Dirigirse al proyecto a la carpeta src y crear los siguientes archivos:
+
+- runtime.txt --> sirve para especificar la version de python que ejecutara heroku
+---- Buscar en google: "heroku python runtime" y buscar las versiones de python que
+---- acepta y copiarla en el archivo runtime.txt
+---- La version por defecto es 3.6.12 en 23/11/2020
+
+- Procfile --> es en donde se especifica desde donde arrancara la aplicación
+---- Descargar en el entorno vitual el paquete gunicorn, el cual utiliza heroku
+---- "pip install gunicorn"
+---- para ejecutar las peticiones http del servidor.
+---- Despues de instalado en el archivo Procfile colocar:
+---- "web: gunicorn index:app" Especifica desde donde arranca la aplicación
+
+- requirements.txt --> archivo en el cual se le especifican todos los requerimentos
+  o paquetes que tendra la aplicación
+---- Para listar los requerimientos situarse en el entorno virtual por la consola
+---- y colocar: "pip freeze" --> enlista todos los paquetes utilizados por la aplicación
+---- Copiar todos los paquetes al archivo "requirements.txt": "pip freeze > ../../src/requirements.txt"
+---- Estos paquetes se ciopiaran directamente al archivo.
+
+<<<<<< PARA PODER SUBIR EL PROYECTO A HEROKU CREAR UN REPOSITORIO DE GIT.
+---- Descargar la herramienta git, configurarlo y loguearse por consola
+---- git config --global user.email = 'persona@email.com'
+---- git config --global user.name = 'nombre'
+---- Comando: git --version
+---- Dirigirse por consola al directorio "/src" del proyecto
+---- ejecutar los comando:
+---- "git init" --> inicializa todos los arcivos para subir
+---- "git add ." --> sube todos los documentos de la carpeta "/src"
+---- "git commit -m "Primera subida a heroku con python" " --> sube todos los archivos y coloca una etiqueta
+---- <<<<< CREAR UNA APLICACION DE HEROKU: "heroku create"
+---- Investigar en google: "heroku remote" para los comandos que se utilzaran para enlazar el repositorio de la
+---- aplicacion en git con "heroku":
+---- utilizar los comandos:
+---- "heroku git:remote nombre-aplicacion-heroku" selecciona la aplicacion y lo prepara al servidor remoto de heroku
+---- "git push heroku master": para subir todo el proyecto commitiado en git a heroku para que se comienze a ejecutar
+----  Luego de que se haya subido todo el proyecto al servidor Heroku en la Nube, ejecutar el siguiente comando:
+---- "heroku open" --> abrira una pestaña en el navegador web de preferencia y mostrara nuestra aplicación remota
+---- con la url por defecto.
+---- Para cambiar de url solo comprar un dominio en un servidor de dominios en la nube.
+
+
+
